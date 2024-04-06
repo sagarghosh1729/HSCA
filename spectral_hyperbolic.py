@@ -12,10 +12,11 @@ from sklearn.manifold import TSNE
 from sklearn.metrics import adjusted_rand_score,normalized_mutual_info_score
 from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
 
-df=pd.read_csv(r"C:\Users\SAGAR GHOSH\OneDrive\Desktop\Project_Prof. Swagatam Das\Write Up_Manifold CLustering\Simulations\Datasets\Real_Dataset\Wisconsin-breast-cancer\wisc.csv")
+df=pd.read_csv(r"...location to the file...\wisc.csv")
 data=df.iloc[:,0:9]
 
-
+#Encoding the label column 
+#For example, the wisc dataset contained the labels in the column indexed by 9. 
 label_encoder=LabelEncoder()
 df.iloc[:,9]=label_encoder.fit_transform(df.iloc[:,9])
 
@@ -161,7 +162,7 @@ print("Cluster Assignments(for Euclidean Spectral Clustering):", cluster_labels)
 
 
 
-#FOr the ESCA with Poisson Kernel
+#For the ESCA with Poisson Kernel
 L_bar_p=np.subtract(D_bar_p,Aff_p)
 eigenvalues,eigenvectors=np.linalg.eigh(L_bar_p)
 PQ=eigenvectors[:,1:n_clusters+1]
