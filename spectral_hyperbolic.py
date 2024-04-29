@@ -287,13 +287,10 @@ def silhouette_sample_score_hyp(X, labels, distances):
     
     return sil_samples
 
-
-
-
 #Defining the Davies-Bouldin Score with Poincare Metric
 def davies_bouldin_score_hyp(X, labels, metric_hyp):
     """
-    Compute Davies-Bouldin Score using Poincare metric=metric_hyp.
+    Compute Davies-Bouldin Score using a specified metric.
     
     Parameters:
         X (array-like): The input data samples.
@@ -308,7 +305,7 @@ def davies_bouldin_score_hyp(X, labels, metric_hyp):
     
     # Calculate centroid for each cluster
     centroids = np.array([np.mean(X[labels == i], axis=0) for i in range(k)])
-    centroids=np.zeros((k,X.shape[1]))
+    """centroids=np.zeros((k,X.shape[1]))
     for i in range(k):
         r_xx=np.zeros(X.shape[1])
         p=0
@@ -317,10 +314,10 @@ def davies_bouldin_score_hyp(X, labels, metric_hyp):
                 r_x=X[j]
                 r_xx=mob_add(r_xx,r_x)
                 p=p+1
-        r_xx=mob_sc_mult((1/p),r_xx) #The geodesic mean in hyperbolic spaces is defined in terms of Mobius Additions and Mobius Scalar Multiplications
-        centroids[i]=r_xx
+        r_xx=mob_sc_mult((1/p),r_xx)
+        centroids[i]=r_xx"""
     
-    
+    #centroids = np.array([np.mean(X[labels == i], axis=0) for i in range(k)])
     
     # Compute intra-cluster distances
     intra_cluster_distances = np.zeros(k)
@@ -351,6 +348,8 @@ def davies_bouldin_score_hyp(X, labels, metric_hyp):
                                for j in range(k) if j != i])
     
     return np.mean(db_scores)
+
+
 
 
 
